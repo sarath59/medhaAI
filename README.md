@@ -1,16 +1,21 @@
 # MedhaAI
 
-MedhaAI is an advanced AI agent framework with minimal abstraction, designed for easy integration of language models and web scraping capabilities.
+MedhaAI is a flexible and powerful multi-agent AI framework for building advanced AI applications. It provides a set of tools and abstractions that allow developers to create complex, collaborative AI systems with ease.
 
 ## Features
 
-- Support for multiple LLM providers (OpenAI and Anthropic)
-- Advanced web scraping tool
-- Flexible agent system for complex task execution
-- Built-in error handling and logging
-- Easy configuration management
+- Multi-agent system with prioritized agents
+- Support for multiple LLM providers (OpenAI, Anthropic)
+- Flexible memory systems
+- Advanced planning and execution modules
+- Customizable toolkit system with advanced web scraping capabilities
+- Live streaming of agent activities
+- Performance monitoring and tracing
+- Asynchronous operations for improved performance
 
 ## Installation
+
+To install MedhaAI, simply use pip:
 
 ```bash
 pip install medhaai
@@ -18,20 +23,19 @@ pip install medhaai
 
 ## Quick Start
 
+Here's a simple example to get you started with MedhaAI:
+
 ```python
 import asyncio
-from medhaai import MedhaConfig, MedhaLLM, MedhaAgent, ToolKit
+from medhaai import MedhaConfig, BaseLLM, BaseAgent, MedhaMultiAgentSystem
 
 async def main():
-    config = MedhaConfig(
-        openai_api_key="your_openai_api_key_here",
-        model_name="gpt-3.5-turbo"
-    )
-    llm = MedhaLLM(config)
-    toolkit = ToolKit()
-    agent = MedhaAgent(llm, toolkit)
-    
-    result = await agent.run("Research the latest advancements in quantum computing")
+    config = MedhaConfig()
+    llm = BaseLLM.create("openai", api_key=config.openai_api_key)
+    agent = BaseAgent.create("general", name="GeneralAgent", role="assistant", llm=llm)
+    mas = MedhaMultiAgentSystem(task_decomposition_llm=llm)
+    mas.add_agent(agent)
+    result = await mas.run_task("Research and summarize the latest advancements in quantum computing")
     print(result)
 
 asyncio.run(main())
@@ -39,46 +43,7 @@ asyncio.run(main())
 
 ## Documentation
 
-For full documentation, visit [docs.medhaai.com](https://docs.medhaai.com).
-
-## Advanced Usage
-
-### Using Different LLM Providers
-
-MedhaAI supports both OpenAI and Anthropic models. Here's how to use an Anthropic model:
-
-```python
-config = MedhaConfig(
-    anthropic_api_key="your_anthropic_api_key_here",
-    model_name="claude-2"
-)
-llm = MedhaLLM(config)
-```
-
-### Custom Web Scraping
-
-You can use the web scraping tool directly:
-
-```python
-from medhaai import AdvancedWebScraperTool
-
-scraper = AdvancedWebScraperTool()
-result = await scraper.scrape("https://example.com")
-print(result)
-```
-
-### Error Handling
-
-MedhaAI provides custom exceptions for better error handling:
-
-```python
-from medhaai.exceptions import MedhaAIException
-
-try:
-    result = await agent.run("Some task")
-except MedhaAIException as e:
-    print(f"An error occurred: {str(e)}")
-```
+For more detailed information and advanced usage, please refer to our [documentation](https://medhaai.readthedocs.io).
 
 ## Contributing
 

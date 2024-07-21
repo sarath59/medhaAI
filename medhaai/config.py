@@ -1,6 +1,6 @@
-from pydantic import BaseSettings, Field
 from typing import Optional
-
+from pydantic_settings import BaseSettings
+from pydantic import Field
 class MedhaConfig(BaseSettings):
     openai_api_key: Optional[str] = Field(None, env='OPENAI_API_KEY')
     anthropic_api_key: Optional[str] = Field(None, env='ANTHROPIC_API_KEY')

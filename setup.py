@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="medhaai",
-    version="0.1.0",
-    author="Your Name",
-    author_email="your.email@example.com",
-    description="A flexible multi-agent AI framework",
+    version="0.4.0",
+    author="Sarath Kavuru",
+    author_email="sarathc225@gmail.com",
+    description="A flexible and powerful multi-agent AI framework for building advanced AI applications",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/medhaai",
+    url="https://github.com/sarath59/medhaAI",
     packages=find_packages(exclude=["tests", "tests.*"]),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -26,10 +26,12 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "pydantic>=2.0.0",
+        "pydantic-settings>=2.0.0",
         "openai>=1.0.0",
         "anthropic>=0.3.0",
         "aiohttp>=3.7.4",
         "beautifulsoup4>=4.9.3",
+        "trafilatura>=1.4.0",
         "opentelemetry-api>=1.12.0",
         "opentelemetry-sdk>=1.12.0",
         "asyncio>=3.4.3",
